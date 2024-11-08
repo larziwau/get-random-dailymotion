@@ -1,0 +1,26 @@
+name: Get Random Dailymotion Video
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch_random_video:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 'latest'
+
+    - name: Install dependencies
+      run: |
+        npm init -y
+        npm install node-fetch cheerio
+
+    - name: Fetch Random Dailymotion Video
+      run: |
+        node fetch-random-video.js
