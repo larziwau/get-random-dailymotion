@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm init -y
-        npm i node-fetch
+        npm i axios
         npm i cheerio
 
     - name: Fetch Random Dailymotion Video
