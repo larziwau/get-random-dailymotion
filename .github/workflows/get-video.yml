@@ -2,6 +2,7 @@ name: Get Random Dailymotion Video
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   fetch_random_video:
