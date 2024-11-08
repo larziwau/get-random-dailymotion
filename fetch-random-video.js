@@ -1,8 +1,6 @@
 import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 
-const cheerio = require('cheerio');
-
 async function getRandomDailymotionVideo() {
     const response = await fetch('https://www.dailymotion.com');
     const body = await response.text();
