@@ -2,6 +2,7 @@
   "name": "get-random-dailymotion",
   "version": "1.0.0",
   "description": "Fetches a random video from Dailymotion",
+  "type": "commonjs",
   "main": "fetch-random-video.js",
   "scripts": {
     "start": "fetch-random-video.js"
