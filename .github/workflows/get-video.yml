@@ -18,8 +18,9 @@ jobs:
 
     - name: Install dependencies
       run: |
-        npm init -y
-        npm install node-fetch cheerio
+        npm init
+        npm i node-fetch
+        npm i cheerio
 
     - name: Fetch Random Dailymotion Video
       run: |
