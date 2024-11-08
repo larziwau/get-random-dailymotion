@@ -1,26 +1,31 @@
-import fetch from 'node-fetch';
-import * as cheerio from 'cheerio';
+const axios = require('axios');
+const cheerio = require('cheerio');
 
-async function getRandomDailymotionVideo() {
-    const response = await fetch('https://www.dailymotion.com');
-    const body = await response.text();
+const DAILYMOTION_TRENDING_URL = 'https://www.dailymotion.com';
 
-    const $ = cheerio.load(body);
-
-    const videoUrls = [];
-    $('a[href^="/video/"]').each((i, element) => {
-        const url = 'https://www.dailymotion.com' + $(element).attr('href');
-        videoUrls.push(url);
+async function fetchRandomVideo() {
+  try {
+    const response = await axios.get(DAILYMOTION_TRENDING_URL);
+    const $ = cheerio.load(response.data);
+    const videoLinks = [];
+    
+    $('a').each((index, element) => {
+      const href = $(element).attr('href');
+      if (href && href.startsWith('/video/')) {
+        videoLinks.push('https://www.dailymotion.com' + href);
+      }
     });
 
-    const randomVideoUrl = videoUrls[Math.floor(Math.random() * videoUrls.length)];
-    return randomVideoUrl;
+    if (videoLinks.length > 0) {
+      const randomIndex = Math.floor(Math.random() * videoLinks.length);
+      const randomVideoUrl = videoLinks[randomIndex];
+      console.log(`Random Video URL: ${randomVideoUrl}`);
+    } else {
+      console.log('No video links found.');
+    }
+  } catch (error) {
+    console.error('Error fetching or scraping the Dailymotion page:', error);
+  }
 }
 
-getRandomDailymotionVideo()
-    .then((videoUrl) => {
-        console.log('Random Dailymotion Video URL:', videoUrl);
-    })
-    .catch((error) => {
-        console.error('Error fetching random video:', error);
-    });
+fetchRandomVideo();
