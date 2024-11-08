@@ -1,7 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const DAILYMOTION_TRENDING_URL = 'https://www.dailymotion.com/';
+const DAILYMOTION_TRENDING_URL = 'https://www.dailymotion.com/us';
 
 async function fetchRandomVideo() {
   try {
