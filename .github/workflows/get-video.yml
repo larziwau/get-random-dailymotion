@@ -9,5 +9,5 @@ jobs:
     steps:
       - name: Get Random Dailymotion Video
         run: |
-          VIDEO_URL=$(curl -s "https://api.dailymotion.com/videos?fields=url&limit=1&sort=random")
+          VIDEO_URL=$(curl -s "https://api.dailymotion.com/videos?fields=url&limit=1&sort=random" | jq -r '.list[0].url')
           echo "Random Dailymotion Video URL: $VIDEO_URL"
